@@ -19,14 +19,14 @@ ByteBrain is a topic-to-video generator that creates chalkboard-style explainer 
 
 ### CNN Explainer
 ---
-https://github.com/your-username/your-repo/raw/main/bytebrain/demo/cnn.mp4
+https://github.com/Sanket117/bytebrain/blob/main/demo/cnn.mp4
 
 </td>
 <td width="50%">
 
 ### Linear Regression Explainer
 ---
-https://github.com/your-username/your-repo/raw/main/bytebrain/demo/linear_regression.mp4
+https://github.com/Sanket117/bytebrain/blob/main/demo/linear_regression.mp4
 
 </td>
 </tr>
