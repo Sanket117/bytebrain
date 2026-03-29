@@ -1,12 +1,3 @@
----
-title: ByteBrain
-emoji: 🧠
-colorFrom: blue
-colorTo: purple
-sdk: docker
-pinned: false
----
-
 # ByteBrain
 
 ByteBrain is a topic-to-video generator that creates chalkboard-style explainer videos with:
@@ -18,8 +9,28 @@ ByteBrain is a topic-to-video generator that creates chalkboard-style explainer 
 
 ## Live Demo
 
-- Hugging Face Space: https://huggingface.co/spaces/Sanket17/bytebrain
-- Demo video file: [demo/bytebrain_demo.mp4](./demo/bytebrain_demo.mp4)
+- Hugging Face Space: https://huggingface.co/spaces/Sanket17/bytebrains
+
+## Demo Videos
+
+<table>
+<tr>
+<td width="50%">
+
+### CNN Explainer
+---
+https://github.com/your-username/your-repo/raw/main/bytebrain/demo/cnn.mp4
+
+</td>
+<td width="50%">
+
+### Linear Regression Explainer
+---
+https://github.com/your-username/your-repo/raw/main/bytebrain/demo/linear_regression.mp4
+
+</td>
+</tr>
+</table>
 
 ## Features
 
@@ -29,6 +40,7 @@ ByteBrain is a topic-to-video generator that creates chalkboard-style explainer 
 - Temp-first output design for hosted environments
 
 ## Project Structure
+...
 
 ```text
 bytebrain/
