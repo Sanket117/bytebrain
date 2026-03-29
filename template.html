@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Indie+Flower&family=Patrick+Hand&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --chalk-white:#f5f0e8;--chalk-yellow:#f7e06a;
+  --chalk-pink:#f4a0b0;--chalk-blue:#a0c4f4;--chalk-orange:#f4b87a;
+  --frame-wood:#5c3a1e;
+}
+
+/* 9:16 vertical ratio container */
+html,body{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#111;
+  font-family:'Caveat',cursive;
+  padding:20px 0 40px;
+}
+
+.frame{
+  position:relative;
+  /* 9:16 ratio — width × (16/9) = height */
+  width:390px;
+  height:693px; /* 390 × 16/9 ≈ 693 */
+  background:var(--frame-wood);
+  border-radius:6px;
+  padding:18px 18px 0;
+  box-shadow:inset 0 0 14px rgba(0,0,0,.7),0 10px 50px rgba(0,0,0,.9),0 0 0 3px #3a2010,0 0 0 7px #7a4a20;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.frame::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(90deg,transparent 0,transparent 20px,rgba(0,0,0,.07) 20px,rgba(0,0,0,.07) 21px);
+  pointer-events:none;
+  z-index:1;
+}
+
+.chalk-tray{
+  position:relative;
+  height:24px;
+  background:linear-gradient(180deg,#3a2010 0%,#5c3a1e 40%,#7a4a20 100%);
+  border-top:2px solid #8b5c2a;
+  display:flex;
+  align-items:center;
+  padding:0 22px;
+  gap:12px;
+  flex-shrink:0;
+  margin-top:auto;
+  z-index:2;
+}
+.chalk-stick{height:11px;border-radius:4px;opacity:.9}
+
+.board{
+  position:relative;
+  flex:1;
+  background:radial-gradient(ellipse at 25% 15%,#3a7030 0%,transparent 55%),
+              radial-gradient(ellipse at 80% 85%,rgba(70,110,50,.35) 0%,transparent 50%),
+              #2d5a27;
+  border-radius:2px;
+  overflow:hidden;
+  padding:16px 18px 14px;
+  display:flex;
+  flex-direction:column;
+}
+
+/* chalk filter */
+.chalk{filter:url(#chalk-filter)}
+
+/* text elements */
+.ch-title{font-family:'Caveat',cursive;font-size:26px;font-weight:700;color:var(--chalk-yellow);text-align:center;letter-spacing:1.5px;text-shadow:0 0 16px rgba(247,224,106,.4);opacity:0;animation:fadeChalk .5s ease both .1s}
+.ch-sub{font-family:'Patrick Hand',cursive;font-size:12px;color:var(--chalk-orange);text-align:center;letter-spacing:1px;margin-top:2px;opacity:0;animation:fadeChalk .5s ease both .2s}
+.ch-divider{height:2px;background:var(--chalk-white);border-radius:2px;margin:10px 4px 12px;opacity:0;transform-origin:left;animation:drawLine .7s ease both .35s}
+.ch-label{font-family:'Patrick Hand',cursive;font-size:11.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;opacity:0;animation:fadeChalk .5s ease both}
+.ch-list{list-style:none;padding:0;margin:0}
+.ch-list li{font-family:'Indie Flower',cursive;font-size:15px;line-height:1.4;padding-left:22px;position:relative;margin-bottom:3px;color:var(--chalk-white);opacity:0;animation:fadeChalk .5s ease both}
+.ch-list li::before{content:attr(data-b);position:absolute;left:2px;color:var(--chalk-yellow)}
+.ch-formula{font-family:'Caveat',cursive;font-size:18px;font-weight:600;color:var(--chalk-yellow);text-align:center;border:2px dashed rgba(245,240,232,.35);border-radius:6px;padding:7px 10px;margin:8px 0 6px;opacity:0;animation:fadeChalk .5s ease both}
+.ch-footnote{font-family:'Patrick Hand',cursive;font-size:11.5px;color:rgba(245,240,232,.55);font-style:italic;text-align:center;padding-top:4px;opacity:0;animation:fadeChalk .5s ease both}
+
+.yellow{color:var(--chalk-yellow)}.pink{color:var(--chalk-pink)}.blue{color:var(--chalk-blue)}.orange{color:var(--chalk-orange)}
+.ul{border-bottom:2px solid currentColor;padding-bottom:1px}
+
+/* SVG draw animation */
+.draw{stroke-dasharray:2000;stroke-dashoffset:2000;animation:drawPath var(--dur,2s) ease forwards var(--delay,0s)}
+.draw-fast{stroke-dasharray:600;stroke-dashoffset:600;animation:drawPath var(--dur,.8s) ease forwards var(--delay,0s)}
+.pop{opacity:0;animation:popIn .3s ease both var(--delay,0s)}
+
+@keyframes drawPath{to{stroke-dashoffset:0}}
+@keyframes fadeChalk{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@keyframes drawLine{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:.5}}
+@keyframes popIn{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+
+
+.d1{animation-delay:.15s!important}.d2{animation-delay:.3s!important}.d3{animation-delay:.5s!important}
+.d4{animation-delay:.65s!important}.d5{animation-delay:.8s!important}.d6{animation-delay:.95s!important}
+.d7{animation-delay:1.1s!important}.d8{animation-delay:1.25s!important}.d9{animation-delay:1.4s!important}
+.d10{animation-delay:1.55s!important}.d11{animation-delay:1.7s!important}.d12{animation-delay:1.85s!important}
+.d13{animation-delay:2.0s!important}.d14{animation-delay:2.2s!important}.d15{animation-delay:2.4s!important}
+.d16{animation-delay:2.6s!important}.d17{animation-delay:2.8s!important}.d18{animation-delay:3.0s!important}
+.d19{animation-delay:3.2s!important}.d20{animation-delay:3.4s!important}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+<defs>
+  <filter id="chalk-filter" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs>
+</svg>
+
+<div class="frame">
+ <div class="board">
+
+  {# ── TITLE BLOCK ── #}
+  <div class="ch-title chalk d1">{{ title | default("📉 Gradient Descent") }}</div>
+  <div class="ch-sub chalk d2">{{ subtitle | default("Machine Learning · How models learn") }}</div>
+  <div class="ch-divider chalk"></div>
+
+  {# ══════════════════════════════════════════════════════
+     DIAGRAM SLOT — full board width
+     Pass diagram_content (raw SVG/HTML) to fill.
+     Dimensions: full width, height: 300px
+  ══════════════════════════════════════════════════════ #}
+  <div style="width:100%;height:300px;flex-shrink:0;margin-bottom:10px;opacity:0;animation:fadeChalk .4s ease both .4s">
+
+    {%- if diagram_content is defined and diagram_content -%}
+      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+        {{ diagram_content | safe }}
+      </div>
+    {%- else -%}
+      <div style="width:100%;height:100%;border:2px dashed rgba(245,240,232,.25);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(245,240,232,.03);filter:url(#chalk-filter);">
+        <svg width="72" height="60" viewBox="0 0 72 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="8" y1="6" x2="8" y2="52" stroke="rgba(245,240,232,.3)" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="8" y1="52" x2="66" y2="52" stroke="rgba(245,240,232,.3)" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M10 44 C18 34,24 20,36 16 C46 13,54 15,60 24" stroke="rgba(160,196,244,.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="36" cy="16" r="3.5" fill="rgba(247,224,106,.4)"/>
+        </svg>
+        <span style="font-family:'Patrick Hand',cursive;font-size:10px;color:rgba(245,240,232,.3);letter-spacing:2px;text-transform:uppercase;">diagram slot</span>
+        <span style="font-family:'Indie Flower',cursive;font-size:11px;color:rgba(245,240,232,.18);text-align:center;padding:0 20px;">pass <span style="color:rgba(160,196,244,.4)">diagram_content</span> to fill this area</span>
+      </div>
+    {%- endif -%}
+
+  </div>{# end diagram slot #}
+
+
+ </div>{# end board #}
+
+ {# Chalk tray #}
+ <div class="chalk-tray">
+  <div class="chalk-stick" style="width:54px;background:#f5f0e8"></div>
+  <div class="chalk-stick" style="width:40px;background:#f7e06a"></div>
+  <div class="chalk-stick" style="width:28px;background:#f4a0b0"></div>
+  <div class="chalk-stick" style="width:20px;background:#a0c4f4"></div>
+  <div class="chalk-stick" style="width:14px;background:#f4b87a"></div>
+ </div>
+
+</div>{# end frame #}
+
+</body>
+</html>
